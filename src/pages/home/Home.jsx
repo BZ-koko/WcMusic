@@ -6,7 +6,7 @@ import {
 import {Link} from 'react-router-dom';
 import {userLogin} from '../../api/authApi';
 
-@inject("stores") @observer
+@inject("store") @observer
 class Home extends React.Component {
   constructor(props) {
     super(props);
@@ -18,7 +18,8 @@ class Home extends React.Component {
   }
 
   componentDidMount() {
-    console.log('request!')
+    console.log('request!');
+    console.log(this.props.store.homeStore.title);
     // userLogin({phone: '13465673271', password: 'wcb123456'}).then(res => {
     //   console.log(res);
     //   debugger

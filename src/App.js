@@ -24,7 +24,7 @@ const RoutesWrap = () => (
 );
 
 ReactDom.render(
-    <Provider {...stores}>
+    <Provider store={stores}>
       <RoutesWrap/>
     </Provider>,
     document.getElementById('root')
