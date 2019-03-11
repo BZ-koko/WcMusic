@@ -27,15 +27,16 @@ class Home extends React.Component {
   }
 
   render() {
+    let homeStore = this.props.store.homeStore;
     return (
         <div className="home-container">
           <div className="home-content">
             <Link to={'/product'}>
-              {this.props.store.homeStore.title}
+              {homeStore.title}
             </Link>
           </div>
           <div>
-            <Button>Default</Button>
+            <Button onClick={()=>homeStore.change()}>更新title</Button>
             <Button type="dashed">Dashed</Button>
             <Button type="danger">Danger</Button>
             <Button type="primary" onClick={() => this.setState({hidden: !this.state.hidden})}>切换TabBar</Button>

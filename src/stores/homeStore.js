@@ -1,13 +1,14 @@
 import React from 'react';
-import { observable,action } from 'mobx';
+import {observable, action} from 'mobx';
 
 
 class HomeStore {
   @observable name = 'home';
   @observable title = '首页';
-  @action change(){
+
+  @action change() {
     console.log('changed-home');
-    this.name = 'gouzi'
+    this.title === '首页' ? this.title = 'gouzi' : this.title = '首页'
   }
 }
 

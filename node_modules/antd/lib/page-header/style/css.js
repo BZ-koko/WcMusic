@@ -1,9 +1,0 @@
-"use strict";
-
-require("./index.css");
-
-require("../../divider/style/css");
-
-require("../../breadcrumb/style/css");
-
-require("../../typography/style/css");
