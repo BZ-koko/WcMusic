@@ -33,10 +33,8 @@
 	  ]
 	或webpack里面配置
 ```
-//3. 由于antd中的 内置icon都是使用 svg来做的，因此需要添加svg的loader
-
-// yarn add svg-sprite-loader
-
+*** 3. 由于antd中的 内置icon都是使用 svg来做的，因此需要添加svg的loader
+yarn add svg-sprite-loader ***
 
 4. 由于antd中的样式文件是 less写的，所以需要添加  less-loader css-loader  和style-loader
 
