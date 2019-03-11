@@ -1,7 +1,7 @@
 // webpack.base.conf.js
 const path = require('path');
 const DIST_PATH = path.resolve(__dirname, '../dist');
-const APP_PATH = path.resolve(__dirname, '../src/App.jsx');
+const APP_PATH = path.resolve(__dirname, '../src/App.js');
 module.exports = {
   entry: {
     app: APP_PATH,
@@ -14,19 +14,25 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.js[x]?$/,
-        use: [
-          {
-            loader: 'babel-loader?presets[]=react,presets[]=es2015,presets[]=stage-2'
+        test: /\.jsx?$/,
+        exclude: /(node_modules|bower_components)/,
+        use: {
+          loader: 'babel-loader',
+          options: {
+            babelrc: false,
+            presets: ['@babel/preset-env', '@babel/preset-react'],
+            plugins: [
+              ['@babel/plugin-proposal-decorators', {"legacy": true}],
+              ['@babel/plugin-proposal-class-properties'],
+              ["import", {
+                libraryName: "antd",
+                style: 'css'
+              }]]
           }
-        ],
+        },
         include: [
           path.resolve(__dirname, '../src')
         ],
-      },
-      {
-        test: /\.js$/, // Check for all js files
-        exclude: /node_modules\/(?!(dom7|ssr-window|swiper)\/).*/,
       },
       {
         test: /\.css$/,

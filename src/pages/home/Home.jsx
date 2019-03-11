@@ -1,10 +1,12 @@
 import React from 'react';
+import {observer,inject} from 'mobx-react';
 import {
   Button,
 } from 'antd';
 import {Link} from 'react-router-dom';
 import {userLogin} from '../../api/authApi';
 
+@inject("stores") @observer
 class Home extends React.Component {
   constructor(props) {
     super(props);
@@ -17,10 +19,10 @@ class Home extends React.Component {
 
   componentDidMount() {
     console.log('request!')
-    userLogin({phone: '13465673271', password: 'wcb123456'}).then(res => {
-      console.log(res);
-      debugger
-    })
+    // userLogin({phone: '13465673271', password: 'wcb123456'}).then(res => {
+    //   console.log(res);
+    //   debugger
+    // })
   }
 
   render() {
@@ -28,7 +30,7 @@ class Home extends React.Component {
         <div className="home-container">
           <div className="home-content">
             <Link to={'/product'}>
-              {this.state.title}
+              {this.props.store.homeStore.title}
             </Link>
           </div>
           <div>
