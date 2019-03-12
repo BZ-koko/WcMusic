@@ -1,6 +1,6 @@
 ## 项目脚手架说明文档
 
-### webpack配置文件说明
+### webpack4.29.4配置文件说明
 1. babel-loader  解析文件，通过babel库
 2. @babel/core   babel 的核心库，用于文件转义,
 3. webpack-dev-server 方便开发环境的使用
