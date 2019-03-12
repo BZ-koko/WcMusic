@@ -1,13 +1,13 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
-import {Menu, Icon, Layout} from 'antd';
-
+import {Menu, Icon, Layout, BackTop} from 'antd';
+import './common.scss';
 const SubMenu = Menu.SubMenu;
-const {Header, Sider, Content} = Layout;
+const {Header, Sider, Content, Footer} = Layout;
 
 class SiderSkelecton extends React.Component {
   constructor(props) {
-    super();
+    super(props);
     this.state = {
       collapsed: false,
     };
@@ -21,7 +21,7 @@ class SiderSkelecton extends React.Component {
 
   render() {
     return (
-        <Layout style={{height: '100%'}}>
+        <Layout className="slider-container">
           <Sider
               trigger={null}
               collapsible
@@ -71,26 +71,24 @@ class SiderSkelecton extends React.Component {
             </Menu>
           </Sider>
           <Layout>
-            <Header style={{background: '#fff', paddingLeft: 24}}>
+            <Header style={{background:'#fff',padding:0}}>
               <Icon
                   className="trigger"
                   type={this.state.collapsed ? 'menu-unfold' : 'menu-fold'}
                   onClick={this.toggle}
+                  style={{color:'#fff'}}
               />
             </Header>
             <Content>
-              <div style={{padding: 24, minHeight: 360}}>
+              <div style={{padding: 24, minHeight: 360,}}>
                 {
                   this.props.children
                 }
               </div>
             </Content>
-            {/*<Content style={{*/}
-              {/*margin: '24px 16px', padding: 24, background: '#fff', minHeight: 280,*/}
-            {/*}}*/}
-            {/*>*/}
-              {/*Content*/}
-            {/*</Content>*/}
+            <Footer style={{textAlign: 'center'}}>
+              jsj ©2019 Created by 臭傻逼
+            </Footer>
           </Layout>
         </Layout>
     );

@@ -1,46 +1,53 @@
 import React from 'react';
-import {observer,inject} from 'mobx-react';
+import {toJS} from 'mobx';
+import {observer, inject} from 'mobx-react';
 import {
+  Spin,
+  Tabs,
   Button,
 } from 'antd';
 import {Link} from 'react-router-dom';
 import {userLogin} from '../../api/authApi';
+import './Home.scss';
 
-@inject("store") @observer
+@inject('store') @observer
 class Home extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      title: '首页',
-      selectedTab: 'redTab',
-      hidden: false
+      loading: true,
     }
   }
 
   componentDidMount() {
-    console.log('request!');
-    console.log(this.props.store.homeStore.title);
-    // userLogin({phone: '13465673271', password: 'wcb123456'}).then(res => {
-    //   console.log(res);
-    //   debugger
-    // })
+    this.props.store.musicStore.musicRankings();
+    setTimeout(() => {
+      this.setState({loading: false})
+    }, 500)
   }
 
   render() {
     let homeStore = this.props.store.homeStore;
+    let musicStore = this.props.store.musicStore;
     return (
         <div className="home-container">
-          <div className="home-content">
-            <Link to={'/product'}>
-              {homeStore.title}
-            </Link>
-          </div>
-          <div>
-            <Button onClick={()=>homeStore.change()}>更新title</Button>
-            <Button type="dashed">Dashed</Button>
-            <Button type="danger">Danger</Button>
-            <Button type="primary" onClick={() => this.setState({hidden: !this.state.hidden})}>切换TabBar</Button>
-          </div>
+          <Spin tip={'Loading...'} spinning={this.state.loading}>
+            <Tabs defaultActiveKey="1">
+              {toJS(musicStore.musicRankingsList).length > 0 && toJS(musicStore.musicRankingsList).map((item, index) => (
+                  <Tabs.TabPane tab={item.name} key={index} className="tabs-tabPane">
+                    <img key={item.name} src={item.pic_s192} className="img-container"/>
+                  </Tabs.TabPane>
+              ))}
+            </Tabs>
+            {/*<div className="home-content">*/}
+              {/*<Link to={'/product'}>*/}
+                {/*{homeStore.title}*/}
+              {/*</Link>*/}
+            {/*</div>*/}
+            {/*<div>*/}
+              {/*<Button onClick={() => homeStore.change()}>更新title</Button>*/}
+            {/*</div>*/}
+          </Spin>
         </div>
     );
   }

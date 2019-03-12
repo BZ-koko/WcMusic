@@ -19,6 +19,7 @@
     "autoprefixer": "^9.4.10",
     "babel-loader": "^8.0.2",
     "babel-plugin-import": "^1.11.0",
+    "babel-plugin-transform-runtime": "^6.23.0",
     "babel-preset-mobx": "^2.0.0",
     "clean-webpack-plugin": "^2.0.0",
     "css-loader": "^1.0.1",

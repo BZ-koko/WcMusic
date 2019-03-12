@@ -35,7 +35,7 @@ export default ({baseURL = '', timeout = 30000, header = defaultHeader}) => {
 
   //响应拦截
   axiosinstance.interceptors.response.use((response) => {
-    console.log(response.data);
+    console.log(response);
     return response.data;
   }, (error) => {
     notification.open({

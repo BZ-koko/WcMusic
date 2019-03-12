@@ -9,8 +9,7 @@ import Product from "./pages/product/Product";
 import Setting from "./pages/setting/Setting";
 import {BrowserRouter as Router, Route, Switch} from "react-router-dom";
 
-configure({enforceActions: 'observed'}); // 开启严格模式
-
+// configure({enforceActions: 'observed'}); // 开启严格模式
 const RoutesWrap = () => (
     <Router>
       <Switch>
