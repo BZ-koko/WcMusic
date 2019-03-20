@@ -7,21 +7,40 @@ import {getMusicRankings} from '../api/musicApi';
 class MusicStore {
   @observable musicRankingsList = [];
 
+  // @action
+  // musicRankings() {
+  //   try {
+  //     getMusicRankings().then(res => {
+  //       if (res.code === 200) {
+  //         musicStore.musicRankingsList = res.result;
+  //       } else {
+  //         notification.open({
+  //           message: '警告',
+  //           description: '获取音乐排行榜数据失败！',
+  //           onClick: () => {
+  //           }
+  //         })
+  //       }
+  //     });
+  //   } catch (err) {
+  //     console.log(err);
+  //   }
+  // }
+
   @action
-  musicRankings() {
+ async musicRankings() {
     try {
-      getMusicRankings().then(res => {
-        if (res.code === 200) {
-          musicStore.musicRankingsList = res.result;
-        } else {
-          notification.open({
-            message: '警告',
-            description: '获取音乐排行榜数据失败！',
-            onClick: () => {
-            }
-          })
-        }
-      });
+    let responseData = await getMusicRankings();
+      if (responseData.code === 200) {
+        musicStore.musicRankingsList = responseData.result;
+      } else {
+        notification.open({
+          message: '警告',
+          description: '获取音乐排行榜数据失败！',
+          onClick: () => {
+          }
+        })
+      }
     } catch (err) {
       console.log(err);
     }
